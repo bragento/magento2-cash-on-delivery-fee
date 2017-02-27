@@ -1,0 +1,49 @@
+<?php
+declare(strict_types = 1);
+namespace Brandung\CashOnDeliveryFee\Service\V1;
+
+use Brandung\CashOnDeliveryFee\Api\GuestPaymentInformationManagementInterface;
+use Magento\Checkout\Api\GuestPaymentInformationManagementInterface as MagentoGuestPaymentManagementInterface;
+use Magento\Quote\Api\Data\AddressInterface;
+use Magento\Quote\Api\Data\PaymentInterface;
+use Magento\Quote\Api\Data\TotalsInterface;
+use Magento\Quote\Api\GuestCartTotalRepositoryInterface;
+
+class GuestPaymentInformationManagement implements GuestPaymentInformationManagementInterface
+{
+    /**
+     * @var MagentoGuestPaymentManagementInterface
+     */
+    private $guestPaymentInformationManagement;
+    /**
+     * @var GuestCartTotalRepositoryInterface
+     */
+    private $guestCartTotalRepository;
+
+    public function __construct(
+        MagentoGuestPaymentManagementInterface $guestPaymentInformationManagement,
+        GuestCartTotalRepositoryInterface $guestCartTotalRepository
+    ) {
+        $this->guestPaymentInformationManagement = $guestPaymentInformationManagement;
+        $this->guestCartTotalRepository = $guestCartTotalRepository;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function savePaymentInformationAndGetTotals(
+        $cartId,
+        $email,
+        PaymentInterface $paymentMethod,
+        AddressInterface $billingAddress = null
+    ): TotalsInterface {
+        $this->guestPaymentInformationManagement->savePaymentInformation(
+            $cartId,
+            $email,
+            $paymentMethod,
+            $billingAddress
+        );
+
+        return $this->guestCartTotalRepository->get($cartId);
+    }
+}

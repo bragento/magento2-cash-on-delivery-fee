@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Brandung\CashOnDeliveryFee\Api\PaymentInformationManagementInterface"
+                type="Brandung\CashOnDeliveryFee\Service\V1\PaymentInformationManagement"/>
+    <preference for="Brandung\CashOnDeliveryFee\Api\GuestPaymentInformationManagementInterface"
+                type="Brandung\CashOnDeliveryFee\Service\V1\GuestPaymentInformationManagement"/>
+    <type name="Magento\Quote\Model\Quote\Address\ToOrder">
+        <plugin name="addCashOnDeliveryFeeToOrder" type="Brandung\CashOnDeliveryFee\Plugin\Quote\CashOnDeliveryFeeToOrder"/>
+    </type>
+    <type name="Magento\Sales\Block\Order\Totals">
+        <plugin name="addCashOnDeliveryTotal" type="Brandung\CashOnDeliveryFee\Plugin\Order\AddCashOnDeliveryFeeToTotalsBlock"/>
+    </type>
+    <type name="Magento\Sales\Model\Order">
+        <plugin name="setCashOnDeliveryExtensionAfterLoad" type="Brandung\CashOnDeliveryFee\Plugin\Order\LoadCashOnDeliveryFee"/>
+    </type>
+    <type name="Magento\Sales\Model\OrderRepository">
+        <plugin name="getCashOnDeliveryExtensionBeforeSave" type="Brandung\CashOnDeliveryFee\Plugin\Order\SaveCashOnDeliveryFee"/>
+    </type>
+    <type name="Magento\Sales\Model\ResourceModel\Order\Collection">
+        <plugin name="setCashOnDeliveryExtensionAfterLoad" type="Brandung\CashOnDeliveryFee\Plugin\Order\LoadCashOnDeliveryFeeOnCollection"/>
+    </type>
+</config>
