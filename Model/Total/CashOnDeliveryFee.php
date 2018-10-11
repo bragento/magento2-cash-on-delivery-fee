@@ -39,6 +39,10 @@ class CashOnDeliveryFee extends AbstractTotal
     ): CashOnDeliveryFee {
         parent::collect($quote, $shippingAssignment, $total);
 
+        if (count($shippingAssignment->getItems()) == 0) {
+            return $this;
+        }
+
         $cashOnDeliveryFee = $this->getFee($quote);
 
         $total->setData(static::TOTAL_CODE, $cashOnDeliveryFee);
