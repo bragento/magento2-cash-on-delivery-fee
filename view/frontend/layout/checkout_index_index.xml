@@ -17,7 +17,7 @@
                                                             <item name="component"  xsi:type="string">Brandung_CashOnDeliveryFee/js/view/checkout/summary/cash-on-delivery-fee</item>
                                                             <item name="sortOrder" xsi:type="string">99</item>
                                                             <item name="config" xsi:type="array">
-                                                                <item name="title" xsi:type="string" translate="true">Cash on Delivery Fee</item>
+                                                                <item name="title" xsi:type="string" translate="true">Cash On Delivery Fee</item>
                                                             </item>
                                                         </item>
                                                     </item>
