@@ -25,4 +25,9 @@
     <type name="Magento\CheckoutAgreements\Model\AgreementsValidator">
         <plugin name="skipAgreementsValidation" type="Brandung\CashOnDeliveryFee\Plugin\CheckoutAgreements\Model\AgreementsValidator" sortOrder="1" />
     </type>
+
+    <!-- Correct Max amount calculation -->
+    <type name="Magento\Payment\Model\Checks\TotalMinMax">
+        <plugin name="checkTotalMinMax" type="Brandung\CashOnDeliveryFee\Plugin\Payment\Model\ChecksTotalMinMax" sortOrder="1" />
+    </type>
 </config>
