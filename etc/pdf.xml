@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Sales:etc/pdf_file.xsd">
+    <totals>
+        <total name="cash_on_delivery_fee">
+            <title translate="true">Cash On Delivery Fee</title>
+            <source_field>cash_on_delivery_fee</source_field>
+            <font_size>10</font_size>
+            <display_zero>false</display_zero>
+            <sort_order>280</sort_order>
+        </total>
+    </totals>
+</config>
