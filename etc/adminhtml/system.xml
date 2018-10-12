@@ -5,7 +5,7 @@
         <section id="payment">
             <group id="cashondelivery">
                 <field id="fee" translate="label" type="text" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Cash on Delivery Fee</label>
+                    <label>Cash On Delivery Fee</label>
                     <validate>validate-number</validate>
                 </field>
             </group>
