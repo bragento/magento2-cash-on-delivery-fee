@@ -8,4 +8,18 @@
                   sort_order="99"/>
         </group>
     </section>
+    <section name="order_invoice">
+        <group name="totals">
+            <item name="cash_on_delivery_fee"
+                  instance="Brandung\CashOnDeliveryFee\Model\Total\Invoice\CashOnDeliveryFee"
+                  sort_order="160"/>
+        </group>
+    </section>
+    <section name="order_creditmemo">
+        <group name="totals">
+            <item name="cash_on_delivery_fee"
+                  instance="Brandung\CashOnDeliveryFee\Model\Total\Creditmemo\CashOnDeliveryFee"
+                  sort_order="160"/>
+        </group>
+    </section>
 </config>
