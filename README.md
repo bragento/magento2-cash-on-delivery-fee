@@ -9,7 +9,7 @@ this module adds a configurable fee for the Magento2 default cash on delivery pa
 
 From Magento2 root dir:
 ```bash
-composer require brandung/cash-on-delivery-fee:^1.0
+composer require brandung/cash-on-delivery-fee
 bin/magento module:enable Brandung_CashOnDeliveryFee
 bin/magento setup:upgrade
 ```
