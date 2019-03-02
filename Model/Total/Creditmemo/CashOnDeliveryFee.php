@@ -21,7 +21,7 @@ class CashOnDeliveryFee extends \Magento\Sales\Model\Order\Creditmemo\Total\Abst
         if (round($codFee, 2) != 0)
         {
             $creditmemo->setGrandTotal($creditmemo->getGrandTotal() + $codFee);
-            $creditmemo->setBaseGrandTotal($creditmemo->getBaseGrandTotal() + $codFee);
+            $creditmemo->setBaseGrandTotal($creditmemo->getBaseGrandTotal() + $baseCodFee);
         }
 
         return $this;

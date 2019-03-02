@@ -4,7 +4,7 @@
     <system>
         <section id="payment">
             <group id="cashondelivery">
-                <field id="fee" translate="label" type="text" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="fee" translate="label" type="text" sortOrder="200" showInDefault="1" showInWebsite="0" showInStore="0">
                     <label>Cash On Delivery Fee</label>
                     <validate>validate-number</validate>
                 </field>

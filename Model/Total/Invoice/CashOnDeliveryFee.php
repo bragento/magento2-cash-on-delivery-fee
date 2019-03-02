@@ -21,7 +21,7 @@ class CashOnDeliveryFee extends \Magento\Sales\Model\Order\Invoice\Total\Abstrac
         if (round($codFee, 2) != 0)
         {
             $invoice->setGrandTotal($invoice->getGrandTotal() + $codFee);
-            $invoice->setBaseGrandTotal($invoice->getBaseGrandTotal() + $codFee);
+            $invoice->setBaseGrandTotal($invoice->getBaseGrandTotal() + $baseCodFee);
         }
 
         return $this;
