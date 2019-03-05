@@ -23,6 +23,7 @@ class AddCashOnDeliveryFeeToTotalsBlock
         if (0 < ($fee = $order->getExtensionAttributes()->getCashOnDeliveryFee())) {
             $subject->addTotalBefore(new DataObject([
                 'code' => CashOnDeliveryFee::TOTAL_CODE,
+                'base_value' => $order->getExtensionAttributes()->getBaseCashOnDeliveryFee(),
                 'value' => $fee,
                 'label' => __('Cash on Delivery Fee')
             ]), TotalsInterface::KEY_GRAND_TOTAL);

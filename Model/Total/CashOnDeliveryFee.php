@@ -25,10 +25,16 @@ class CashOnDeliveryFee extends AbstractTotal
      * @var float
      */
     private $fee;
+    private $baseCurrency;
 
-    public function __construct(ScopeConfigInterface $scopeConfig)
+    public function __construct(
+        ScopeConfigInterface $scopeConfig,
+        \Magento\Directory\Model\CurrencyFactory $currencyFactory
+    )
     {
         $this->fee = (float)$scopeConfig->getValue(static::CONFIG_PATH_FEE_AMOUNT, ScopeInterface::SCOPE_STORE);
+        $currencyCode = $scopeConfig->getValue("currency/options/base", ScopeConfigInterface::SCOPE_TYPE_DEFAULT);
+        $this->baseCurrency =  $currencyFactory->create()->load($currencyCode);
     }
 
     public function collect(
@@ -43,23 +49,33 @@ class CashOnDeliveryFee extends AbstractTotal
             return $this;
         }
 
-        $cashOnDeliveryFee = $this->getFee($quote);
+        $baseCashOnDeliveryFee = $this->getFee($quote);
+        $currency = $quote->getStore()->getCurrentCurrency();
+        $cashOnDeliveryFee = $this->baseCurrency->convert($baseCashOnDeliveryFee, $currency);
 
         $total->setData(static::TOTAL_CODE, $cashOnDeliveryFee);
-        $total->setData(static::BASE_TOTAL_CODE, $cashOnDeliveryFee);
+        $total->setData(static::BASE_TOTAL_CODE, $baseCashOnDeliveryFee);
 
         $total->setTotalAmount(static::TOTAL_CODE, $cashOnDeliveryFee);
-        $total->setBaseTotalAmount(static::TOTAL_CODE, $cashOnDeliveryFee);
+        $total->setBaseTotalAmount(static::TOTAL_CODE, $baseCashOnDeliveryFee);
 
         return $this;
     }
 
     public function fetch(Quote $quote, Total $total): array
     {
+        $base_value = $this->getFee($quote);
+        if ($base_value) {
+            $currency = $quote->getStore()->getCurrentCurrency();
+            $value = $this->baseCurrency->convert($base_value, $currency);
+        } else {
+            $value = null;
+        }
         return [
             'code' => static::TOTAL_CODE,
             'title' => static::LABEL,
-            'value' => $this->getFee($quote)
+            'base_value' => $base_value,
+            'value' => $value
         ];
     }
 
