@@ -33,7 +33,7 @@ class CashOnDeliveryFee extends AbstractTotal
     )
     {
         $this->fee = (float)$scopeConfig->getValue(static::CONFIG_PATH_FEE_AMOUNT, ScopeInterface::SCOPE_STORE);
-        $currencyCode = $scopeConfig->getValue("currency/options/base", ScopeConfigInterface::SCOPE_TYPE_DEFAULT);
+        $currencyCode = $scopeConfig->getValue("currency/options/base", ScopeInterface::SCOPE_WEBSITES);
         $this->baseCurrency =  $currencyFactory->create()->load($currencyCode);
     }
 
