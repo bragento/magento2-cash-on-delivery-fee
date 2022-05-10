@@ -2,7 +2,7 @@
   "name": "brandung/cash-on-delivery-fee",
   "description": "Adds a fee for cash on delivery payment method",
   "require": {
-    "php": "^7.0.0",
+    "php": "^7.0.0||^8.1.0",
     "magento/module-payment": "^100.1.5",
     "magento/module-offline-payments": "^100.1.2",
     "magento/module-store": "^100.1.5|^101.0.0",
