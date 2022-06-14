@@ -12,7 +12,7 @@ class CashOnDeliveryFee extends \Magento\Sales\Model\Order\Invoice\Total\Abstrac
     {
         parent::collect($invoice);
 
-        $codFee = $invoice->getOrder()->getExtensionAttributes()->getCashOnDeliveryFee();
+        $codFee = (float)$invoice->getOrder()->getExtensionAttributes()->getCashOnDeliveryFee();
         $baseCodFee = $invoice->getOrder()->getExtensionAttributes()->getBaseCashOnDeliveryFee();
 
         $invoice->setData(\Brandung\CashOnDeliveryFee\Model\Total\CashOnDeliveryFee::TOTAL_CODE, $codFee);

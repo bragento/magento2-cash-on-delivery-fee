@@ -12,7 +12,7 @@ class CashOnDeliveryFee extends \Magento\Sales\Model\Order\Creditmemo\Total\Abst
     {
         parent::collect($creditmemo);
 
-        $codFee = $creditmemo->getOrder()->getExtensionAttributes()->getCashOnDeliveryFee();
+        $codFee = (float)$creditmemo->getOrder()->getExtensionAttributes()->getCashOnDeliveryFee();
         $baseCodFee = $creditmemo->getOrder()->getExtensionAttributes()->getBaseCashOnDeliveryFee();
 
         $creditmemo->setData(\Brandung\CashOnDeliveryFee\Model\Total\CashOnDeliveryFee::TOTAL_CODE, $codFee);
