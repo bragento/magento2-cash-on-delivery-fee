@@ -1,6 +1,4 @@
 
-![alt text](https://www.agentur-brandung.de/fileadmin/img/logo-250x74.png "Brandung")
-
 ## Cash on Delivery Fee
 
 this module adds a configurable fee for the Magento2 default cash on delivery payment Method
